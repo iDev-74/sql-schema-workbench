@@ -763,7 +763,7 @@ with tab1:
             if result.status == "success":
                 st.success(result.message)
                 if result.df is not None and not result.df.empty:
-                    st.dataframe(result.df, use_container_width=True)
+                    st.dataframe(result.df, width='stretch')
             elif result.status == "warning":
                 st.warning(result.message)
             else:
@@ -796,7 +796,7 @@ with tab2:
                 preview_sql = f'SELECT * FROM {quoted_table} LIMIT 10;'
                 result = engine.execute_select(preview_sql)
                 if result.status == "success" and result.df is not None:
-                    st.dataframe(result.df, use_container_width=True)
+                    st.dataframe(result.df, width='stretch')
                 else:
                     st.error(f"Failed to load sample data: {result.message}")
             except Exception as e:
